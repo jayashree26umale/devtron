@@ -45,5 +45,6 @@ deploy_app:
   environment: dev
   script:
     - echo "$KUBE_URL"
-    - kubectl apply -f deployment.yaml 
+    - kubectl create namespace dev
+    - kubectl apply -f deployment.yaml --namespace=dev
 
