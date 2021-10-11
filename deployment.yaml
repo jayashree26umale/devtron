@@ -1,1 +1,33 @@
-
+apiVersion: v1
+kind: Service
+metadata:
+        name: cloud7-helloworldapp-svc
+spec:
+        selector:
+                app: microservices
+                tier: frontend
+        ports:
+              - targetPort: 80
+                port: 80
+                nodePort: 30008
+        type: NodePort
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+        name: cloud7-helloworldapp-dpt
+        labels:
+                app: microservices
+spec:
+        replicas: 1
+        template:
+                metadata:
+                        labels:
+                                app: microservices
+                                tier: frontend
+                spec:
+                         containers:
+                              - name: microservices-app
+                                image: registry.gitlab.com/bhatanimesh02/springboot-helloworld
+                                ports:
+                                      - containerPort: 80
