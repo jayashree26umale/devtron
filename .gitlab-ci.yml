@@ -45,6 +45,7 @@ deploy_app:
   environment: dev
   script:
     - echo "$KUBE_URL"
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
     - kubectl create namespace dev
     - kubectl apply -f deployment.yaml --namespace=dev
 
