@@ -1,8 +1,11 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hello-world
 spec:
+  selector:
+    matchLabels:
+      app: hello-world
   replicas: 1 
   template:
     metadata:
@@ -28,5 +31,5 @@ spec:
   ports:
   - port: 8080
     targetPort: 8080
-    nodePort: 30008
+    nodePort: 30020
   type: NodePort
