@@ -12,7 +12,7 @@ variables:
 stages:
   # - build
   # - test
-  - docker
+  # - docker
   - deploy
   
 # maven-build:
@@ -31,12 +31,12 @@ stages:
 #     paths:
 #       - target/*.jar
 
-docker-build:
-  stage: docker
-  script:
-    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
-    - docker build -t registry.gitlab.com/bhatanimesh02/springboot-helloworld .
-    - docker push registry.gitlab.com/bhatanimesh02/springboot-helloworld
+# docker-build:
+#   stage: docker
+#   script:
+#     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+#     - docker build -t registry.gitlab.com/bhatanimesh02/springboot-helloworld .
+#     - docker push registry.gitlab.com/bhatanimesh02/springboot-helloworld
 
 
 deploy_app:
@@ -46,4 +46,3 @@ deploy_app:
   script:
     - echo "$KUBE_URL"
     - kubectl apply -f deployment.yaml --namespace=default
-
