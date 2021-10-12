@@ -1,4 +1,4 @@
-FROM maven:3.6-alpine as builder
+FROM maven as builder
 COPY springboot-helloworld /springboot-helloworld
 WORKDIR /springboot-helloworld
 RUN mvn clean install -DskipTests
