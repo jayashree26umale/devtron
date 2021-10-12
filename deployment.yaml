@@ -14,11 +14,10 @@ spec:
     spec:
       containers:
       - name: hello-world-pod
-        image: registry.gitlab.com/bhatanimesh02/springboot-helloworld
+        image: jayashreeumale/gitlab:latest
         ports: 
         - containerPort: 8080
-      imagePullSecrets: 
-      - name: registry-credentials
+      
         
 ---
 apiVersion: v1
