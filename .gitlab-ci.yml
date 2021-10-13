@@ -10,26 +10,26 @@ variables:
   REPO: springboot-helloworld
 
 stages:
-  - build
-  - test
+  # - build
+  # - test
   - docker
-  # - deploy
+  - deploy
 
-maven-build:
-  image: maven:3-jdk-8
-  stage: build
-  script: "mvn clean package -B"
-  artifacts:
-    paths:
-      - target/*.jar
+# maven-build:
+#   image: maven:3-jdk-8
+#   stage: build
+#   script: "mvn clean package -B"
+#   artifacts:
+#     paths:
+#       - target/*.jar
 
-maven-test:
-  image: maven:3-jdk-8
-  stage: test
-  script: "mvn test"
-  artifacts:
-    paths:
-      - target/*.jar
+# maven-test:
+#   image: maven:3-jdk-8
+#   stage: test
+#   script: "mvn test"
+#   artifacts:
+#     paths:
+#       - target/*.jar
 
 docker-build:
   stage: docker
@@ -38,10 +38,11 @@ docker-build:
     - docker build -t jayashreeumale/gitlab .
     - docker push jayashreeumale/gitlab
 
-# deploy_app:
-#   image: thisiskj/kubectl-envsubst
-#   stage: deploy
-#   environment: dev
-#   script:
-#     - echo "$KUBE_URL"
-#     - kubectl apply -f deployment.yaml --namespace=default
+deploy_app:
+  image: thisiskj/kubectl-envsubst
+  stage: deploy
+  environment: dev
+  script:
+    - echo "$KUBE_URL"
+    - kubectl apply -f deployment.yaml --namespace=default
+    
