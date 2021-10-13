@@ -10,16 +10,10 @@ variables:
   REPO: springboot-helloworld
 
 stages:
-  - clean
   - build
-  - test
+  # - test
   - docker
   # - deploy
-
-maven-clean:
-  image: maven:3-jdk-8
-  stage: clean
-  script: "mvn clean"  
 
 maven-build:
   image: maven:3-jdk-8
@@ -29,13 +23,13 @@ maven-build:
     paths:
       - target/*.jar
 
-maven-test:
-  image: maven:3-jdk-8
-  stage: test
-  script: "mvn test"
-  artifacts:
-    paths:
-      - target/*.jar
+# maven-test:
+#   image: maven:3-jdk-8
+#   stage: test
+#   script: "mvn test"
+#   artifacts:
+#     paths:
+#       - target/*.jar
 
 docker-build:
   stage: docker
