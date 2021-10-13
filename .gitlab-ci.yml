@@ -1,6 +1,3 @@
-include:
-  template: Jobs/Code-Quality.gitlab-ci.yml
-
 image: gitlab/dind
 services:
   - docker:dind
