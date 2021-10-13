@@ -10,39 +10,39 @@ variables:
   REPO: springboot-helloworld
 
 stages:
-  # - build
-  # - test
-  - docker
-  - deploy
+  - build
+  - test
+  # - docker
+  # - deploy
   
-# maven-build:
-#   image: maven:3-jdk-8
-#   stage: build
-#   script: "mvn clean package -B"
-#   artifacts:
-#     paths:
-#       - target/*.jar
+maven-build:
+  image: maven:3-jdk-8
+  stage: build
+  script: "mvn clean package -B"
+  artifacts:
+    paths:
+      - target/*.jar
 
-# maven-test:
-#   image: maven:3-jdk-8
-#   stage: test
-#   script: "mvn test"
-#   artifacts:
-#     paths:
-#       - target/*.jar
+maven-test:
+  image: maven:3-jdk-8
+  stage: test
+  script: "mvn test"
+  artifacts:
+    paths:
+      - target/*.jar
 
-docker-build:
-  stage: docker
-  script:
-    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-    - docker build -t jayashreeumale/gitlab .
-    - docker push jayashreeumale/gitlab
+# docker-build:
+#   stage: docker
+#   script:
+#     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+#     - docker build -t jayashreeumale/gitlab .
+#     - docker push jayashreeumale/gitlab
 
 
-deploy_app:
-  image: thisiskj/kubectl-envsubst
-  stage: deploy
-  environment: dev
-  script:
-    - echo "$KUBE_URL"
-    - kubectl apply -f deployment.yaml --namespace=default
+# deploy_app:
+#   image: thisiskj/kubectl-envsubst
+#   stage: deploy
+#   environment: dev
+#   script:
+#     - echo "$KUBE_URL"
+#     - kubectl apply -f deployment.yaml --namespace=default
