@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: hello-world-pod
-        image: jayashreeumale/gitlab:latest
+        image: jayashreeumale/cloud7-helloapp:latest
         ports: 
         - containerPort: 8080
       
