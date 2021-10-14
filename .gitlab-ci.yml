@@ -31,8 +31,8 @@ docker-build:
   stage: docker
   script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-    - docker build -t jayashreeumale/gitlab .
-    - docker push jayashreeumale/gitlab
+    - docker build -t jayashreeumale/cloud7-helloapp .
+    - docker push jayashreeumale/cloud7-helloapp
 
 deploy_app:
   image: thisiskj/kubectl-envsubst
